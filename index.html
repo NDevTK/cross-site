@@ -10,7 +10,7 @@ if (window.origin === "null" && window.top === window && window.opener === null 
   if(window.confirm("WARNING: if you continue you will XSS yourself") === true) {
     unsafe();
   } else {
-    window.location.href = "/";
+    window.history.back();
   }
 } else {
   // Used for sandbox
