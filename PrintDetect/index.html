@@ -1,8 +1,10 @@
 <html>
 <head>
 <script>
+onbeforeprint = _ => {
+parent.postMessage('onbeforeprint', '*');
+};
 print();
-parent.postMessage('No PDF', '*');
 </script>
 </head>
 <body>
