@@ -6,7 +6,7 @@ function check() {
     result.innerText = 'Loading';
     let test = document.createElement('iframe');
     test.hidden = true;
-    test.src = 'data:html,<script>print();parent.postMessage("", "*")</script>';
+    test.src = 'data:html,<script>print();parent.postMessage("", "*");';
     document.body.appendChild(test);
 
     onmessage = e => {
