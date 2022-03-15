@@ -4,9 +4,11 @@
 function check() {
     let result = document.getElementById('result');
     result.innerText = 'Loading';
+    
     let test = document.createElement('iframe');
     test.hidden = true;
-    test.src = 'data:text/html,<script>print();parent.postMessage("", "*");';
+    test.src = 'data:text/html,<img src="" onerror="print();parent.postMessage(``, `*`);">';
+
     document.body.appendChild(test);
 
     onmessage = e => {
