@@ -1,20 +1,20 @@
 <script>
-  function check() { 
+function check() {
     let result = document.getElementById('result');
     result.innerText = 'Loading';
     let test = document.createElement('iframe');
     test.hidden = true;
     test.src = 'data:html,<script>print();parent.postMessage("", "*")</script>';
     document.body.appendChild(test);
-    
+
     onmessage = e => {
         result.innerText = 'No PDF';
     }
-    
+
     setTimeout(_ => {
-      onmessage = null;
-      if (result.innerText === 'Loading') result.innerText = 'PDF!';
-      document.body.removeChild(test);
+        onmessage = null;
+        if (result.innerText === 'Loading') result.innerText = 'PDF!';
+        document.body.removeChild(test);
     }, 1000);
 }
 </script>
