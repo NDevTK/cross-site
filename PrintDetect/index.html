@@ -1,32 +1,10 @@
 <html>
 <head>
 <script>
-function check() {
-    let result = document.getElementById('result');
-    result.innerText = 'Loading';
-    
-    
-    let test2 = document.createElement('iframe');
-    test2.hidden = true;
-    test2.src = 'data:text/html,<img src="" onerror="setTimeout(parent.postMessage(`PDF!`, `*`), 1000);">';
-    document.body.appendChild(test2);
-    
-    let test = document.createElement('iframe');
-    test.hidden = true;
-    test.src = 'data:text/html,<img src="" onerror="print();parent.postMessage(`No PDF`, `*`);">';
-    document.body.appendChild(test);
-
-    onmessage = e => {
-        onmessage = null;
-        result.innerText = e.data;
-        document.body.removeChild(test);
-        document.body.removeChild(test2);
-    }
-}
+print();
+parent.postMessage('No PDF', '*');
 </script>
 </head>
 <body>
-<button onclick="check()">Click me</button>
-<p1 id="result"></p1>
 </body>
 </html>
