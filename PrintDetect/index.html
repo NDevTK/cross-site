@@ -5,21 +5,23 @@ function check() {
     let result = document.getElementById('result');
     result.innerText = 'Loading';
     
+    
+    let test2 = document.createElement('iframe');
+    test2.hidden = true;
+    test2.src = 'data:text/html,<img src="" onerror="setTimeout(parent.postMessage(`PDF!`, `*`), 1000);">';
+    document.body.appendChild(test2);
+    
     let test = document.createElement('iframe');
     test.hidden = true;
-    test.src = 'data:text/html,<img src="" onerror="print();parent.postMessage(``, `*`);">';
-
+    test.src = 'data:text/html,<img src="" onerror="print();parent.postMessage(`No PDF`, `*`);">';
     document.body.appendChild(test);
 
     onmessage = e => {
-        result.innerText = 'No PDF';
-    }
-
-    setTimeout(_ => {
         onmessage = null;
-        if (result.innerText === 'Loading') result.innerText = 'PDF!';
+        result.innerText = e.data;
         document.body.removeChild(test);
-    }, 1000);
+        document.body.removeChild(test2);
+    }
 }
 </script>
 </head>
