@@ -6,8 +6,11 @@
 if (window.origin === "null" && window.opener === null && window.top === window && window.parent === window) {
   // Clean URL
   window.history.replaceState("", "", "?html=" + new URL(location.href).searchParams.get("html"));
+  
+  prompt('If you would like to run untrusted code please type '+Math.random()+' below :)');
+  
   // Require user confirmation
-  if(window.confirm("WARNING: if you continue you will XSS yourself") === true) {
+  if(OTPConfirm() && window.confirm("WARNING: if you continue you will XSS yourself") === true) {
     unsafe();
   } else {
     window.history.back();
@@ -22,5 +25,23 @@ if (window.origin === "null" && window.opener === null && window.top === window 
 function unsafe() {
   // unsafe code to run code from url
   document.body.innerHTML = new URL(location.href).searchParams.get("html");
+}
+
+function OTPConfirm() {
+  const OTP = generateOTP(8);
+  const result = prompt('By continuing you agree to run UNTRUSTED code on this website if you want to allow this please type '+ OTP + 'other wise click cancel.');
+  return (result === OTP);
+}
+
+function generateOTP(length) {
+  let password = '';
+  let chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // Possible characters that can appear in password
+  let passwordLength = length;
+  const array = new Uint32Array(length); // Create 'unsigned' array
+  window.crypto.getRandomValues(array); // Assign random values to new array
+  for (let i = 0; i < passwordLength; i++) {
+    password += chars[array[i] % chars.length]; // % operator returns remainder of division
+  }
+  return password;
 }
 </script>
