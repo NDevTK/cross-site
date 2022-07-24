@@ -29,7 +29,7 @@ function unsafe() {
 
 function OTPConfirm() {
   const OTP = generateOTP(8);
-  const result = prompt('By continuing you agree to run UNTRUSTED code on this website if you want to allow this please type '+ OTP + 'other wise click cancel.');
+  const result = prompt('By continuing you agree to run UNTRUSTED code on this website if you want to allow this please type '+ OTP + ' other wise click cancel.');
   return (result === OTP);
 }
 
