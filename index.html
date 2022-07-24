@@ -41,6 +41,12 @@ function OTPConfirm() {
         if (OTPConfirm() === false) return false
       }
       break
+    case 'help':
+      alert("'help' is not recognized as an internal or external command, operable program or batch file.");
+      break
+    case 'whoami':
+      alert('You are at '+ location.origin + ' using the origin ' + window.origin);
+      break
   }
   return (result === OTP);
 }
