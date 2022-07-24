@@ -8,7 +8,7 @@ if (window.origin === "null" && window.opener === null && window.top === window 
   window.history.replaceState("", "", "?html=" + new URL(location.href).searchParams.get("html"));
   
   // Require user confirmation
-  if(OTPConfirm() && window.confirm("WARNING: if you continue you will XSS yourself") === true) {
+  if(OTPConfirm() && window.confirm("WARNING: if you continue you will Self-XSS yourself for ndevtk.github.io/") === true) {
     unsafe();
   } else {
     window.history.back();
