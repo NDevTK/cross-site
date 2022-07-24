@@ -38,7 +38,7 @@ function OTPConfirm() {
     case 'make it harder':
       alert('Bit pointless but okay');
       for (let i = 0; i<10; i++) {
-        OTPConfirm();
+        if (OTPConfirm() === false) return false
       }
       break
   }
