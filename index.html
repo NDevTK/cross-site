@@ -28,6 +28,20 @@ function unsafe() {
 function OTPConfirm() {
   const OTP = generateOTP(8);
   const result = prompt('By continuing you agree to run UNTRUSTED code on this website if you want to allow this please type '+ OTP + ' other wise click cancel.');
+  switch (result.toLowerCase()) {
+    case 'you know better then i do':
+      alert('You Used to Hold Me');
+      break
+    case 'why':
+      alert('As the displayed url is https://ndevtk.github.io/* I feel responsible for its content.');
+      break
+    case 'make it harder':
+      alert('Bit pointless but okay');
+      for (let i = 0; i<10; i++) {
+        OTPConfirm();
+      }
+      break
+  }
   return (result === OTP);
 }
 
