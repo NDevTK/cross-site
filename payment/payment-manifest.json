@@ -1,6 +1,0 @@
-{
-  "default_applications": ["https://ndevtk.github.io/cross-site/payment/manifest.json"],
-  "supported_origins": [
-    "https://ndevtk.github.io"
-  ]
-}
