@@ -5,12 +5,14 @@
  
 let loop = setInterval(() => {
   window.moveTo(0, 0);
-  if (innerWidth >= 500 && innerHeight >= 500) askUser();
+  if (innerWidth >= 500 && innerHeight >= 500) {
+    clearInterval(loop);
+    askUser();
+  }
   if (innerWidth < 500 || innerHeight < 500) window.resizeTo(600, 600);
  }, 1000);
 
 function askUser() {
-  clearInterval(loop);
   // Origin must be sandboxed and not in a iframe
   if (window.origin === "null" && window.opener === null && window.top === window && window.parent === window) {
     // Clean URL
