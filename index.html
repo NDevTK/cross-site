@@ -14,12 +14,12 @@ let loop = setInterval(() => {
 
 function askUser() {
   // Origin must be sandboxed and not in a iframe
-  if (window.origin === "null" && window.opener === null && window.top === window && window.parent === window) {
+  if (window.origin === "null" && window.opener === null && window.top === window && window.parent === window && window.locationbar.visible === true) {
     // Clean URL
     window.history.replaceState("", "", "?html=" + new URL(location.href).searchParams.get("html"));
 
     // Require user confirmation
-    if(OTPConfirm() && window.confirm("WARNING: if you continue you will Self-XSS yourself for ndevtk.github.io") === true) {
+    if(OTPConfirm() && window.confirm("WARNING: if you continue you will Self-XSS yourself for " + location.host) === true) {
       unsafe();
     } else {
       window.history.back();
@@ -39,7 +39,7 @@ function unsafe() {
 
 function OTPConfirm() {
   const OTP = generateOTP(8);
-  const result = prompt('By continuing you agree to run UNTRUSTED code on this website if you want to allow this please type '+ OTP + ' other wise click cancel.');
+  const result = prompt('By continuing you agree to run UNTRUSTED code on ' + location.origin + ' if you want to allow this please type '+ OTP + ' otherwise click cancel.');
   switch (result.toLowerCase()) {
     case 'you know better then i do':
       alert('You Used to Hold Me');
