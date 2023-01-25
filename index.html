@@ -3,11 +3,18 @@
 <script>
 "use strict";
 
-setInterval(() => {
+let loop = setInterval(() => {
+  if (innerWidth > 500 && innerHeight > 500) askUser();
   window.moveTo(0,0);
   if (innerWidth < 500 || innerHeight < 500) window.resizeTo(500, 500);
  }, 1000);
 
+
+let userAsked = false;
+
+function askUser() {
+if (userAsked) return;
+userAsked = true;
 // Origin must be sandboxed and not in a iframe
 if (window.origin === "null" && window.opener === null && window.top === window && window.parent === window) {
   // Clean URL
@@ -25,8 +32,10 @@ if (window.origin === "null" && window.opener === null && window.top === window 
     location = location;
   });
 }
+}
 
 function unsafe() {
+  clearInterval(loop);
   // unsafe code to run code from url
   document.body.innerHTML = new URL(location.href).searchParams.get("html");
 }
