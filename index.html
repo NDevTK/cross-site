@@ -5,7 +5,7 @@
  
 let loop = setInterval(() => {
   window.moveTo(0, 0);
-  if (innerWidth >= 500 && innerHeight >= 500) {
+  if (innerWidth > 500 && innerHeight > 500) {
     clearInterval(loop);
     askUser();
   }
