@@ -2,38 +2,35 @@
 <h1>WARNING: if you continue you will XSS yourself</h1>
 <script>
 "use strict";
-
-let userAsked = false;
+ 
 let loop = setInterval(() => {
-  if (innerWidth >= 500 && innerHeight >= 500) askUser();
   window.moveTo(0,0);
+  if (innerWidth >= 500 && innerHeight >= 500) askUser();
   if (innerWidth < 500 || innerHeight < 500) window.resizeTo(600, 600);
  }, 1000);
 
 function askUser() {
-if (userAsked) return;
-userAsked = true;
-// Origin must be sandboxed and not in a iframe
-if (window.origin === "null" && window.opener === null && window.top === window && window.parent === window) {
-  // Clean URL
-  window.history.replaceState("", "", "?html=" + new URL(location.href).searchParams.get("html"));
-  
-  // Require user confirmation
-  if(OTPConfirm() && window.confirm("WARNING: if you continue you will Self-XSS yourself for ndevtk.github.io") === true) {
-    unsafe();
+  clearInterval(loop);
+  // Origin must be sandboxed and not in a iframe
+  if (window.origin === "null" && window.opener === null && window.top === window && window.parent === window) {
+    // Clean URL
+    window.history.replaceState("", "", "?html=" + new URL(location.href).searchParams.get("html"));
+
+    // Require user confirmation
+    if(OTPConfirm() && window.confirm("WARNING: if you continue you will Self-XSS yourself for ndevtk.github.io") === true) {
+      unsafe();
+    } else {
+      window.history.back();
+    }
   } else {
-    window.history.back();
+    // Used for sandbox
+    navigator.serviceWorker.register("https://ndevtk.github.io/cross-site/sw.js").then(_ => {
+      location = location;
+    });
   }
-} else {
-  // Used for sandbox
-  navigator.serviceWorker.register("https://ndevtk.github.io/cross-site/sw.js").then(_ => {
-    location = location;
-  });
-}
 }
 
 function unsafe() {
-  clearInterval(loop);
   // unsafe code to run code from url
   document.body.innerHTML = new URL(location.href).searchParams.get("html");
 }
