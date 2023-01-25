@@ -2,6 +2,12 @@
 <h1>WARNING: if you continue you will XSS yourself</h1>
 <script>
 "use strict";
+
+setInterval(() => {
+  window.moveTo(0,0);
+  if (innerWidth < 500 || innerHeight < 500) window.resizeTo(500, 500);
+ }, 1000);
+
 // Origin must be sandboxed and not in a iframe
 if (window.origin === "null" && window.opener === null && window.top === window && window.parent === window) {
   // Clean URL
