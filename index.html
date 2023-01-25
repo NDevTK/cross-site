@@ -4,7 +4,7 @@
 "use strict";
  
 let loop = setInterval(() => {
-  window.moveTo(0,0);
+  window.moveTo(0, 0);
   if (innerWidth >= 500 && innerHeight >= 500) askUser();
   if (innerWidth < 500 || innerHeight < 500) window.resizeTo(600, 600);
  }, 1000);
