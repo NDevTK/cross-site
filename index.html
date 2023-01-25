@@ -13,6 +13,7 @@ let loop = setInterval(() => {
  }, 1000);
 
 function askUser() {
+  if (location.protocol !== 'https:') return;
   // Origin must be sandboxed and not in a iframe
   if (window.origin === "null" && window.opener === null && window.top === window && window.parent === window && window.locationbar.visible === true) {
     // Clean URL
@@ -39,7 +40,7 @@ function unsafe() {
 
 function OTPConfirm() {
   const OTP = generateOTP(8);
-  const result = prompt('By continuing you agree to run UNTRUSTED code on ' + location.origin + ' if you want to allow this please type '+ OTP + ' otherwise click cancel.');
+  const result = prompt('By continuing you agree to run UNTRUSTED code on ' + location.host + ' if you want to allow this please type '+ OTP + ' otherwise click cancel.');
   switch (result.toLowerCase()) {
     case 'you know better then i do':
       alert('You Used to Hold Me');
