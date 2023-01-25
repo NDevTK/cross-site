@@ -7,7 +7,7 @@ let userAsked = false;
 let loop = setInterval(() => {
   if (innerWidth >= 500 && innerHeight >= 500) askUser();
   window.moveTo(0,0);
-  if (innerWidth < 500 || innerHeight < 500) window.resizeTo(500, 500);
+  if (innerWidth < 500 || innerHeight < 500) window.resizeTo(600, 600);
  }, 1000);
 
 function askUser() {
