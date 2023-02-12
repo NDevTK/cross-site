@@ -1,11 +1,14 @@
 <script>
 onload = () => {
-  onmessage = e => {
-    document.body.innerText = (e.source == null) ? 'yes' : 'no';
-  }
-  let f = document.createElement('iframe');
-  document.body.appendChild(f);
-  f.src = 'reply.html';
-  f.onload = () => document.body.removeChild(f);
+
+onmessage = e => {
+document.body.innerText = (e.source == null) ? 'yes' : 'no';
+}
+
+f = document.createElement('iframe');
+f.sandbox = 'allow-scripts';
+document.body.appendChild(f);
+f.srcdoc = `<script>parent.postMessage('alert(window.origin)','*');</script>`;
+f.onload = () => document.body.removeChild(f);
 }
 </script>
