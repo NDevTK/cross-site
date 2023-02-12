@@ -8,7 +8,7 @@ document.body.innerText = (e.source == null) ? 'yes' : 'no';
 f = document.createElement('iframe');
 f.sandbox = 'allow-scripts';
 document.body.appendChild(f);
-f.srcdoc = `<script>parent.postMessage('alert(window.origin)','*');</script>`;
+f.srcdoc = `<script>parent.postMessage('alert(window.origin)','*');<\/script>`;
 f.onload = () => document.body.removeChild(f);
 }
 </script>
