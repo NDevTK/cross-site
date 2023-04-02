@@ -1,0 +1,12 @@
+<html>
+  <body>
+    <script>
+      document.cookie="thirdparty=yes;SameSite=None;secure";
+      if (!/thirdparty=yes/.test(document.cookie)) {
+        parent.postMessage({
+          event: '3pcookiesdisabled'
+        }, '*');
+      }
+    </script>
+  </body>
+</html>
