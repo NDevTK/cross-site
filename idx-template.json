@@ -1,10 +1,10 @@
 {
-  "name": "Google Login",
-  "description": "lol",
+  "name": "Google '><h1>testLogin",
+  "description": "l'><h1>testol",
   "params": [
     {
-      "id": "email",
-      "name": "Email:",
+      "id": "emai'><h1>testl",
+      "name": 'Emai"><h1>testl:',
       "type": "text",
       "required": true
     },
